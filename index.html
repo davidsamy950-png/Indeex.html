@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مترجم الألمانية الاحترافي 🇩🇪✨</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #090d16, #111827, #1f2937);
+            font-family: 'Cairo', sans-serif;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 24px;
+            width: 100%;
+            max-width: 480px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+        }
+
+        h2 {
+            text-align: center;
+            color: #38bdf8;
+            margin-bottom: 20px;
+            font-weight: 900;
+            font-size: 24px;
+            letter-spacing: 0.5px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #94a3b8;
+            font-weight: 700;
+        }
+
+        textarea {
+            width: 100%;
+            height: 110px;
+            background: rgba(15, 23, 42, 0.7);
+            border: 2px solid #334155;
+            border-radius: 14px;
+            color: #fff;
+            padding: 14px;
+            font-family: 'Cairo', sans-serif;
+            font-size: 16px;
+            resize: none;
+            box-sizing: border-box;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        textarea:focus {
+            border-color: #38bdf8;
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
+        }
+
+        .btn-main {
+            width: 100%;
+            background: linear-gradient(135deg, #0284c7, #2563eb);
+            color: white;
+            border: none;
+            padding: 14px;
+            font-size: 16px;
+            font-family: 'Cairo', sans-serif;
+            font-weight: 700;
+            border-radius: 14px;
+            cursor: pointer;
+            margin-top: 15px;
+            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.4);
+            transition: 0.3s;
+        }
+
+        .btn-main:hover {
+            transform: scale(1.02);
+        }
+
+        .result-section {
+            margin-top: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .result-card {
+            background: rgba(15, 23, 42, 0.85);
+            border: 1px solid #334155;
+            border-radius: 16px;
+            padding: 16px;
+            position: relative;
+            box-sizing: border-box;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .card-title {
+            font-size: 13px;
+            color: #38bdf8;
+            font-weight: 700;
+        }
+
+        .card-content {
+            font-size: 17px;
+            color: #f8fafc;
+            font-weight: 700;
+            word-break: break-word;
+            line-height: 1.5;
+        }
+
+        .actions-row {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .btn-action {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #e2e8f0;
+            padding: 8px 12px;
+            font-family: 'Cairo', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            border-radius: 10px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            transition: 0.2s;
+        }
+
+        .btn-action:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .btn-speak {
+            background: #059669;
+            border-color: #059669;
+            color: white;
+        }
+
+        .btn-speak:hover {
+            background: #047857;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>مترجم الألمانية الاحترافي 🇩🇪</h2>
+        
+        <label for="inputText">اكتب النص بالعربية:</label>
+        <textarea id="inputText" placeholder="مثال: مرحباً، كيف حالك اليوم؟"></textarea>
+
+        <button class="btn-main" onclick="translateGerman()">ترجم إلى الألمانية باحتراف 🚀</button>
+
+        <div class="result-section">
+            <!-- صندوق الترجمة الألمانية -->
+            <div class="result-card">
+                <div class="card-header">
+                    <span class="card-title">الترجمة الألمانية (Deutsch):</span>
+                </div>
+                <div id="deText" class="card-content">---</div>
+                <div class="actions-row" id="deActions" style="display:none;">
+                    <button class="btn-action btn-speak" onclick="speakGerman()">🔊 اسمع النطق</button>
+                    <button class="btn-action" onclick="copyText('deText')">📋 نسخ</button>
+                </div>
+            </div>
+
+            <!-- صندوق النطق بالحروف الإنجليزية/اللاتينية -->
+            <div class="result-card">
+                <div class="card-header">
+                    <span class="card-title">النطق اللاتيني (Phonics):</span>
+                </div>
+                <div id="enPhonics" class="card-content">---</div>
+            </div>
+
+            <!-- صندوق النطق بالحروف العربية القريبة -->
+            <div class="result-card">
+                <div class="card-header">
+                    <span class="card-title">النطق العربي التقريبي:</span>
+                </div>
+                <div id="arPhonics" class="card-content">---</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentGermanText = "";
+
+        async function translateGerman() {
+            const text = document.getElementById('inputText').value.trim();
+            const deDiv = document.getElementById('deText');
+            const enPhonicsDiv = document.getElementById('enPhonics');
+            const arPhonicsDiv = document.getElementById('arPhonics');
+            const deActions = document.getElementById('deActions');
+
+            if (!text) {
+                deDiv.innerText = "الرجاء كتابة نص للترجمة!";
+                enPhonicsDiv.innerText = "---";
+                arPhonicsDiv.innerText = "---";
+                deActions.style.display = "none";
+                return;
+            }
+
+            deDiv.innerText = "جاري المعالجة بأعلى جودة...";
+            enPhonicsDiv.innerText = "...";
+            arPhonicsDiv.innerText = "...";
+            deActions.style.display = "none";
+
+            try {
+                // 1. جلب الترجمة للألمانية (de)
+                const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=ar&tl=de&dt=t&q=${encodeURIComponent(text)}`;
+                const response = await fetch(url);
+                const data = await response.json();
+                
+                let translated = "";
+                if (data && data[0]) {
+                    data[0].forEach(item => {
+                        if (item[0]) translated += item[0];
+                    });
+                }
+
+                if (translated) {
+                    currentGermanText = translated;
+                    deDiv.innerText = translated;
+                    deActions.style.display = "flex";
+
+                    // 2. جلب النطق الصوتي بالحروف اللاتينية (Phonics)
+                    const phoneticUrl = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=de&tl=en&dt=rm&q=${encodeURIComponent(translated)}`;
+                    const pRes = await fetch(phoneticUrl);
+                    const pData = await pRes.json();
+                    
+                    let englishPhonics = "";
+                    if (pData && pData[0]) {
+                        pData[0].forEach(item => {
+                            if (item[3]) englishPhonics += item[3];
+                        });
+                    }
+                    
+                    if (!englishPhonics) englishPhonics = translated;
+                    enPhonicsDiv.innerText = englishPhonics;
+
+                    // 3. تحويل النطق اللاتيني إلى نطق عربي دقيق
+                    arPhonicsDiv.innerText = convertToGermanArabicPhonics(englishPhonics);
+                } else {
+                    deDiv.innerText = "حدث خطأ في الترجمة.";
+                }
+            } catch (error) {
+                deDiv.innerText = "تعذر الاتصال بالخدمة.";
+            }
+        }
+
+        function speakGerman() {
+            if (!currentGermanText) return;
+            // تشغيل الصوت النقي من جوجل للغة الألمانية (de)
+            const ttsUrl = `https://translate.google.com/translate_tts?ie=UTF-8&q=${encodeURIComponent(currentGermanText)}&tl=de&client=tw-ob`;
+            const audio = new Audio(ttsUrl);
+            audio.play().catch(e => {
+                alert("يرجى رفع صوت الجهاز للتأكد من سماع النطق.");
+            });
+        }
+
+        function copyText(elementId) {
+            const text = document.getElementById(elementId).innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                alert("تم النسخ بنجاح! 📋");
+            });
+        }
+
+        // محول ذكي مخصص لخصائص النطق الألماني (German Phonics to Arabic)
+        function convertToGermanArabicPhonics(str) {
+            return str
+                .toLowerCase()
+                .replace(/sch/g, 'ش')
+                .replace(/ch/g, 'خ/ش')
+                .replace(/st/g, 'شت')
+                .replace(/sp/g, 'شپ')
+                .replace(/eu/g, 'أوي')
+                .replace(/äu/g, 'أوي')
+                .replace(/ei/g, 'آي')
+                .replace(/ie/g, 'يي')
+                .replace(/au/g, 'آو')
+                .replace(/ph/g, 'ف')
+                .replace(/v/g, 'ف')
+                .replace(/w/g, 'ڤ')
+                .replace(/z/g, 'تس')
+                .replace(/j/g, 'ي')
+                .replace(/y/g, 'ي')
+                .replace(/g/g, 'گ')
+                .replace(/h/g, 'هـ')
+                .replace(/s/g, 'س')
+                .replace(/t/g, 'ت')
+                .replace(/b/g, 'ب')
+                .replace(/d/g, 'د')
+                .replace(/m/g, 'م')
+                .replace(/n/g, 'ن')
+                .replace(/r/g, 'ر')
+                .replace(/l/g, 'ل')
+                .replace(/k/g, 'ك')
+                .replace(/p/g, 'پ')
+                .replace(/a/g, 'آ')
+                .replace(/e/g, 'إِ')
+                .replace(/i/g, 'ي')
+                .replace(/o/g, 'وُ')
+                .replace(/u/g, 'وُ');
+        }
+    </script>
+
+</body>
+</html>
